@@ -19,9 +19,13 @@ public class RWayTrie implements Trie {
     }
 
     private Node add(Node current, String term, int weight, int depth) {
-        if (current == null) current = new Node();
+        if (current == null) {
+            current = new Node();
+        }
         if (depth == term.length()) {
-            if (current.weight == WEIGHT_FLAG) this.size++;
+            if (current.weight == WEIGHT_FLAG) {
+                this.size++;
+            }
             current.weight = weight;
             return current;
         }
@@ -33,14 +37,18 @@ public class RWayTrie implements Trie {
     @Override
     public boolean contains(String word) {
         Node found = this.search(root, word);
-        if (found == null) return false;
+        if (found == null) {
+            return false;
+        }
         return found.weight != WEIGHT_FLAG;
     }
 
     @Override
     public boolean delete(String word) {
         Node found = this.search(root, word);
-        if (found == null || found.weight == WEIGHT_FLAG) return false;
+        if (found == null || found.weight == WEIGHT_FLAG) {
+            return false;
+        }
         found.weight = WEIGHT_FLAG;
         this.size--;
         return true;
@@ -49,7 +57,9 @@ public class RWayTrie implements Trie {
     private Node search(Node start, String word) {
         Node pointer = start;
         for (int i = 0; i < word.length(); i++) {
-            if (pointer == null) return null;
+            if (pointer == null) {
+                return null;
+            }
             pointer = pointer.next[word.charAt(i)];
         }
         return pointer;
@@ -68,10 +78,15 @@ public class RWayTrie implements Trie {
     }
 
     private void collect(Node current, String pref, Queue<String> q) {
-        if (current == null) return;
-        if (current.weight != WEIGHT_FLAG) q.enqueue(pref);
-        for (char c = 0; c < R; c++)
+        if (current == null) {
+            return;
+        }
+        if (current.weight != WEIGHT_FLAG) {
+            q.enqueue(pref);
+        }
+        for (char c = 0; c < R; c++) {
             collect(current.next[c], pref + c, q);
+        }
     }
 
     @Override

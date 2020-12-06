@@ -46,7 +46,7 @@ public class Queue<T> implements Iterable<T> {
     }
 
     @Override
-    public void forEach(Consumer<? super T> action) {
+    public void forEach(Consumer< ? super T> action) {
         this.list.forEach(action);
     }
 
