@@ -4,7 +4,10 @@ import ua.edu.ucu.tries.RWayTrie;
 import ua.edu.ucu.tries.Trie;
 import ua.edu.ucu.tries.Tuple;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -72,7 +75,7 @@ public class PrefixMatches {
             return null;
         }
         Iterable<String> allWords = this.wordsWithPrefix(pref);
-        Map<Integer, HashSet<String>> wordMap = new HashMap<>();
+        HashMap<Integer, HashSet<String>> wordMap = new HashMap<>();
         for (String word : allWords) {
             wordMap.computeIfAbsent(word.length(), k1 -> new HashSet<>());
             wordMap.get(word.length()).add(word);
